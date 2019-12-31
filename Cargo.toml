@@ -1,0 +1,20 @@
+[package]
+name = "mastermind"
+version = "0.1.0"
+authors = ["Thibault Douzon <douzont@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lib]
+name = "mastermind"
+crate-type = ["cdylib"]
+
+[dependencies]
+
+[dependencies.pyo3]
+version = "0.8.4"
+features = ["extension-module"]
+
+
+
