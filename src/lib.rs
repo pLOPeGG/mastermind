@@ -1,5 +1,4 @@
 use std::cmp;
-use std::iter::FromIterator;
 
 use pyo3::prelude::*;
 use pyo3::wrap_pyfunction;

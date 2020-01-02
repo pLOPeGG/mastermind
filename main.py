@@ -126,14 +126,14 @@ def solve(secret, solver):
             guess, remain = step(remain, secret, solver=solver)
 
         n_correct, n_almost = get_clues(guess, secret)
-        
+
         print(f"[{i}] New guess : ", end="")
         show_comb(guess)
         show_answer(n_correct, n_almost)
-        
+
         if n_correct == 4:
             break
-        
+
         i += 1
 
     conclude(remain, secret, i)
