@@ -58,7 +58,7 @@ def step(remain, secret, guess=None, *, solver="python"):
             best_comb = None
             to_remove = []
 
-            for g in tqdm.tqdm(remain):
+            for g in tqdm.tqdm(itertools.product(colors, repeat=4)):
                 worst_reduce = len(remain)
                 worst_comb_secret = None
 
@@ -126,19 +126,26 @@ def solve(secret, solver):
             guess, remain = step(remain, secret, solver=solver)
 
         n_correct, n_almost = get_clues(guess, secret)
-
+        
         print(f"[{i}] New guess : ", end="")
         show_comb(guess)
         show_answer(n_correct, n_almost)
-
+        
+        if n_correct == 4:
+            break
+        
         i += 1
 
     conclude(remain, secret, i)
+    return i
 
 
 def main():
     secret = draw_secret()
+    secret = [1, 3, 2, 3]
     solve(secret, "rust")
+
+    # print(max(solve(draw_secret(), "rust") for _ in range(100)))
 
 
 if __name__ == "__main__":

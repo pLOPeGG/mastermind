@@ -11,6 +11,7 @@ name = "mastermind"
 crate-type = ["cdylib"]
 
 [dependencies]
+itertools = "0.8.2"
 
 [dependencies.pyo3]
 version = "0.8.4"
