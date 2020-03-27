@@ -59,7 +59,10 @@ fn make_a_guess(remain: &mut PyList) -> PyResult<Comb> {
             best_reduce = worst_reduce;
             best_comb = Some(g.to_vec());
         }
-    } 
+    }
+
+    best_comb = if r_remain.len() == 1 {Some(r_remain[0].clone())} else {best_comb};
+
     match best_comb {
         Some(v) => Ok(v),
         _ => Err(ValueError::py_err("No result found".to_string()))

@@ -78,7 +78,6 @@ def step(remain, secret, guess=None, *, solver="python"):
             guess = best_comb
 
         elif solver == "rust":
-
             guess = make_a_guess(remain)
 
     remain = [p for p in remain if fit(p, guess, *get_clues(guess, secret))]
@@ -119,7 +118,7 @@ def solve(secret, solver):
     show_comb(secret)
 
     i = 1
-    while len(remain) > 1 and i < 10:
+    while True:
         if i == 1:
             guess, remain = step(remain, secret, [0, 0, 1, 1], solver=solver)
         else:
@@ -131,7 +130,8 @@ def solve(secret, solver):
         show_comb(guess)
         show_answer(n_correct, n_almost)
 
-        if n_correct == 4:
+        if n_correct == len(secret):
+            assert len(remain) == 1
             break
 
         i += 1
@@ -142,7 +142,8 @@ def solve(secret, solver):
 
 def main():
     secret = draw_secret()
-    secret = [1, 3, 2, 3]
+    # secret = [1, 3, 2, 3]
+    secret = random.choices(range(6), k=4)
     solve(secret, "rust")
 
     # print(max(solve(draw_secret(), "rust") for _ in range(100)))
